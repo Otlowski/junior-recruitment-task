@@ -1,1 +1,49 @@
-plik startowy aplikacji
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TODO LIST</title>
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="main">
+        <div class="main__container">
+            <div class="tasks-header">
+                <div class="tasks-header__corner"></div>
+                <div class="tasks-header__title">ToDo List</div>
+            </div>
+          <div class="tasks-list">
+            <div class="tasks__item">
+                    <div class="tasks__item-checkbox">
+                        <div class="checkbox-content">
+                            <img id="change-status" src="img/checkmark.png" style="display:none">
+                        </div>
+                    </div>
+                    <div class="tasks__item-text">Proof read the new post.</div>
+                    <div id="delete-task" class="tasks__item-delete">
+                      <img src="img/trash.png">
+                    </div>
+             </div>
+             <div class="tasks__item  tasks__item--done">
+                   <div class="tasks__item-checkbox">
+                       <div class="checkbox-content">
+                           <img id="change-status" src="img/checkmark.png">
+                       </div>
+                   </div>
+                   <div class="tasks__item-text">Proof read the new post.</div>
+                   <div id="delete-task" class="tasks__item-delete">
+                     <img src="img/trash.png">
+                   </div>
+            </div>
+             <div class="tasks__item tasks__item--add">
+                 <div class="tasks__item-button-plus">
+                     <img id="add-task" src="img/add-button.png">
+                 </div>
+                 <input class="add-new-task" placeholder="Add new task">
+             </div>
+        </div>
+    </div>
+  </body>
+</html>
