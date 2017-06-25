@@ -3,7 +3,7 @@ include 'tasksController.php';
 
 //prepare dataParams to verify which method we have choosen
 $dataFunction = (string)($_POST['data-function']);
-
+$dataOrder = '';
 //check which parameters have been sent
 if(isset($_POST['data-id']))          $dataId          = ($_POST['data-id']);
 if(isset($_POST['data-status']))      $dataStatus      = (string)($_POST['data-status']);
@@ -22,7 +22,7 @@ switch ($dataFunction) {
 
   case 'update':
     //updateTask
-    $updateTask = $taskFunction->updateTask($dataId,$dataStatus,$dataOrder);
+    $updateTask = $taskFunction->updateTask($dataId,$dataStatus);
     //response
     if($updateTask) echo $updateTask;
     break;

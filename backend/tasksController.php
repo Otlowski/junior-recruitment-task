@@ -72,28 +72,29 @@ class tasksController
 
   }
   //Method API for update Tasks
-  public function updateTask($dataId,$dataStatus,$dataOrder){
+  public function updateTask($dataId,$dataStatus){
     try {
-      $taskId = 111;
-      $query  = "UPDATE tasks SET task_order=$dataOrder, status=$dataStatus WHERE id=$taskId;";
+      // $query  = "UPDATE tasks SET task_order=$dataOrder, status=$dataStatus WHERE id=$dataId;";
+      $query  = "UPDATE tasks SET status=$dataStatus WHERE id=$dataId;";
       $queryDelete = $this->db->exec($query);
       if($queryDelete){
+        //updated properties
         $idProp      = 'task-id';
         $methodProp  = 'task-method';
         $statusProp  = 'task-status';
         $orderProp   = 'task-order';
-
+        //create response Object
         $responseMsg = new stdClass();
         $responseMsg -> message       = 'success';
-        $responseMsg -> $idProp       = $taskId;
+        $responseMsg -> $idProp       = $dataId;
         $responseMsg -> $statusProp   = $dataStatus;
-        $responseMsg -> $orderProp    = $dataOrder;
+        // $responseMsg -> $orderProp    = $dataOrder;
         $responseMsg -> $methodProp   = 'updateTask';
 
         $result = json_encode($responseMsg);
         return $result;
       }else {
-          echo 'Task cannot be delete';
+          echo 'Task cannot be updated';
       }
     } catch (Exception $e) {
 

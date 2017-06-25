@@ -4,6 +4,7 @@ $headerBorderColor   : #454F5C;
 $taskBorderColor     : #F2E3DF;
 $taskBackgroundColor : #fff;
 $checkboxBorderColor : #dae4eb;
+$disactiveTaskColor  : #9eb2c0;
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
 $font: 'Lato', sans-serif;
@@ -50,7 +51,8 @@ body {
     width: 100%;
     height: auto;
 
-    .tasks__item{
+    .tasks__item,
+    .tasks__item .active{
       background-color: $taskBackgroundColor;
       display: inline-block;
       float: left;
@@ -65,7 +67,7 @@ body {
           border-left: 1px solid $taskBorderColor;
           height: 100%;
           width: 75%;
-      }
+         }
         .tasks__item-button-plus,
         .tasks__item-checkbox{
           float: left;
@@ -112,6 +114,7 @@ body {
           cursor: pointer;
           border: 1px solid #dae4eb;
           img{
+            display: none;
             float: left;
             width: 7px;
             margin-bottom: 2px;
@@ -121,6 +124,22 @@ body {
           margin-bottom: 2px;
         }
 
+    }
+    .tasks__item.disactive
+    {
+      .tasks__item-text{
+        color:$disactiveTaskColor;
+        text-decoration: line-through;;
+       }
+       .checkbox-content
+       {
+         img{
+            display: block;
+         }
+       }
+       img#delete-task{
+         opacity: 0.3;
+       }
     }
 
   }
