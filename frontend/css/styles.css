@@ -36,7 +36,8 @@ body {
     display: block;
     float: left;
     width: 100%;
-    height: auto; }
+    height: 400px;
+    overflow: auto; }
     .main__container .tasks-list .tasks__item,
     .main__container .tasks-list .tasks__item .active {
       background-color: #fff;
@@ -80,6 +81,7 @@ body {
         padding-right: 15px; }
         .main__container .tasks-list .tasks__item .tasks__item-delete img,
         .main__container .tasks-list .tasks__item .active .tasks__item-delete img {
+          cursor: pointer;
           float: right; }
       .main__container .tasks-list .tasks__item input,
       .main__container .tasks-list .tasks__item .active input {
@@ -127,7 +129,9 @@ body {
     .main__container .tasks-header {
       width: 390px; }
     .main__container .tasks-list {
-      width: 390px; } }
+      width: 390px;
+      height: 400px;
+      overflow: auto; } }
 @media screen and (max-width: 740px) {
   .main__container {
     padding: 0;
@@ -136,7 +140,9 @@ body {
     .main__container .tasks-header {
       width: 100%; }
     .main__container .tasks-list {
-      width: 100%; } }
+      width: 100%;
+      height: 400px;
+      overflow: auto; } }
 @media screen and (max-width: 400px) {
   .main__container {
     margin: 0 auto;

@@ -49,7 +49,8 @@ body {
     display: block;
     float: left;
     width: 100%;
-    height: auto;
+    height: 400px;
+    overflow: auto;
 
     .tasks__item,
     .tasks__item .active{
@@ -90,7 +91,10 @@ body {
             height: 100%;
             padding-top: 15px;
             padding-right: 15px;
-            img{ float: right;}
+            img{
+              cursor: pointer;
+              float: right;
+            }
         }
         input{
           float: left;
@@ -158,6 +162,8 @@ body {
     }
     .tasks-list{
       width: 390px;
+      height: 400px;
+      overflow: auto;
     }
   }
 }
@@ -173,6 +179,8 @@ body {
     }
     .tasks-list{
       width: 100%;
+      height: 400px;
+      overflow: auto;
     }
   }
 

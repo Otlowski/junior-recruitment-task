@@ -76,7 +76,7 @@ function appendTasks(tasksList){
                //delete task
                if(e.target && e.target.id == "delete-task")
                {
-                 var taskSelector = e.target.parentNode;
+                 var taskSelector = e.target.parentNode.parentNode;
                  var taskUniqueId = taskSelector.id;
                  var taskDbId = taskSelector.getAttribute('data-task-db-id');
                  deleteTask(taskUniqueId, taskDbId);
@@ -126,12 +126,28 @@ function updateTaskStatus(taskUniqueId,taskDbId){
 //Delete Task
 function deleteTask(taskUniqueId,taskDbId){
 
+  var request = new XMLHttpRequest();
+  var data    = new FormData();
+      data.append('data-function','delete');
+      data.append('data-id',taskDbId);
+
+      request.onreadystatechange = function(){
+          if (request.readyState === 4 && request.status === 200) {
+              //response
+              var updatedTask = JSON.parse(request.response);
+              //Remove elements from DOM
+              var removeElement = document.getElementById(taskUniqueId);
+                  removeElement.outerHTML ="";
+                  delete removeElement;
+            }
+      }
+    request.open("POST", "../backend/ajaxHandler.php", true);
+    request.send(data);
 }
 
-// //On addNewTask Click
+//On addNewTask Click
 addTaskBtn.onclick = function(){
   apiAddTask();
-  // addTaskRow(tasksTable)
 }
 function apiAddTask(){
   //prepare parameters
@@ -148,14 +164,17 @@ function apiAddTask(){
               //response
               var response =  JSON.parse(request.response);
               console.log(response);
-              //call function to append tasks
+              //Append added task content
+              var tasksTable = document.getElementById('tasks-table');
+                  tasksTable.innerHTML='';
+                  tasksTable.innerHTML=taskItemAddRow;
+                  addTaskInput.value = '';
+              getTasksList();
             }
         }
         request.open("POST", "../backend/ajaxHandler.php", true);
         request.send(data);
-        // console.log('getTasksList');
   }
-
 
 };
 //Templates
@@ -168,10 +187,10 @@ const taskItemActive =
   <div class="tasks__item-delete">
       <img id="delete-task" src="img/trash.png">
   </div>`;
-
-
- // </div>`;
-// function addTaskRow(targetUI){
-//   var inputText    = document.getElementById('add-task-input').value;
-// };
-//Functionalities
+const taskItemAddRow =
+`<div class="tasks__item tasks__item--add">
+     <div class="tasks__item-button-plus">
+         <img id="add-task" src="img/add-button.png">
+     </div>
+     <input id="add-task-input" class="add-new-task" placeholder="Add new task">
+</div>`;

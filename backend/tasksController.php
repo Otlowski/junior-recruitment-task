@@ -44,9 +44,9 @@ class tasksController
 
     try {
 
+
         $query  = "INSERT INTO tasks (content, status) VALUES('$dataDescription', 1);";
         $queryList = $this->db->exec($query);
-
         //check if query is correct
         if($queryList){
           $contentProp = 'task-content';
@@ -63,7 +63,6 @@ class tasksController
         }else{
             echo 'Data cannot be inserted';
         }
-        // return json_encode($queryList);
 
     } catch (Exception $e) {
       echo $e->getMessage();
@@ -103,8 +102,7 @@ class tasksController
   //Method API for delete Task
   public function deleteTask($dataId){
     try {
-      $taskId = 777;
-      $query  = "DELETE FROM tasks WHERE id=$taskId;";
+      $query  = "DELETE FROM tasks WHERE id=$dataId;";
       $queryDelete = $this->db->exec($query);
       if($queryDelete){
         $idProp      = 'task-id';
@@ -112,7 +110,7 @@ class tasksController
 
         $responseMsg = new stdClass();
         $responseMsg -> message       = 'success';
-        $responseMsg -> $idProp       = $taskId;
+        $responseMsg -> $idProp       = $dataId;
         $responseMsg -> $methodProp   = 'deleteTask';
 
         $result = json_encode($responseMsg);
